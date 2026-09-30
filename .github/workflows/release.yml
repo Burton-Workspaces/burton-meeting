@@ -1,0 +1,58 @@
+# Release
+#
+# What: Runs release-please on master. From Conventional Commits since the last
+#       tag it either opens/updates a "chore(master): release X.Y.Z" PR, or,
+#       when that PR is merged, tags vX.Y.Z and creates the GitHub Release.
+# When: push to master.
+# Does not: run unit tests (see ci.yml) or sign the APK itself. Packing is the
+#           "Pack release APK" job, which calls release-assets.yml.
+#
+# Jobs:
+#   Release-please
+#     googleapis/release-please-action@v5 reads release-please-config.json and
+#     .release-please-manifest.json. It labels the release PR autorelease: pending
+#     so the following push (after merge) can create tag vX.Y.Z. Do not set
+#     skip-labeling; without that label, merging never tags.
+#     Only runs when github.repository is Burton-Workspaces/burton-meeting
+#     so forks do not open release PRs.
+#   Pack release APK
+#     Runs only when release-please actually created a release (outputs
+#     release_created + tag_name). Reuses release-assets.yml with that tag.
+name: Release
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  release-please:
+    name: Release-please
+    if: github.repository == 'Burton-Workspaces/burton-meeting'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v5
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  pack:
+    name: Pack release APK
+    needs: release-please
+    if: "${{ needs.release-please.outputs.release_created == 'true' && needs.release-please.outputs.tag_name != '' }}"
+    uses: ./.github/workflows/release-assets.yml
+    with:
+      tag: ${{ needs.release-please.outputs.tag_name }}
+    secrets: inherit
+    permissions:
+      contents: write

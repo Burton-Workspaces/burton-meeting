@@ -1,0 +1,8 @@
+-keepattributes SourceFile,LineNumberTable
+-keep class com.burton.meeting.** { *; }
+-keep class org.webrtc.** { *; }
+-keep class org.java_websocket.** { *; }
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn org.webrtc.**
+-dontwarn org.java_websocket.**
