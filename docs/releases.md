@@ -52,7 +52,7 @@ These workflows match [burton-sonos-android](https://github.com/Burton-Workspace
 
 ## Signing
 
-Local and CI signing, including how `KEYSTORE_BASE64` maps to your JKS, is documented in [build-automation.md](build-automation.md).
+Local and CI signing, including how `KEYSTORE_BASE64` maps to your JKS and the `gh secret set` commands, is documented in [build-automation.md](build-automation.md).
 
 GitHub repository secrets used by [`.github/workflows/release-assets.yml`](../.github/workflows/release-assets.yml):
 
