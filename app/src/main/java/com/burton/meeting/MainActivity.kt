@@ -40,6 +40,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.burton.meeting.report.ShakeToReport
 import com.burton.meeting.ui.call.CallScreen
 import com.burton.meeting.ui.home.HomeScreen
 import com.burton.meeting.ui.home.HomeViewModel
@@ -55,6 +56,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private var permitted by mutableStateOf(false)
     private var pendingMedia: (() -> Unit)? = null
+    private val shakeToReport by lazy { ShakeToReport(this) }
 
     private val discoveryLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -85,6 +87,16 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        shakeToReport.start()
+    }
+
+    override fun onPause() {
+        shakeToReport.stop()
+        super.onPause()
     }
 
     fun keepScreenOn(on: Boolean) {

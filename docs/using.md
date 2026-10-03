@@ -25,7 +25,11 @@ Lists rooms found on this Wi-Fi. Each row shows the name, **Video** or **Voice**
 - **Join with a code** — type the code; join as video or voice
 - Tap a nearby row to join that room
 
-Settings (gear) holds your display name and the app version.
+Settings (gear) holds your display name and the app version. Long-press **About** to file an issue.
+
+### File an issue
+
+Shake the phone, or long-press **About** in Settings. Burton Issues opens on New issue with this app already selected. Nothing is posted until you submit; Back cancels.
 
 ### In a meeting
 

@@ -30,6 +30,14 @@
     <uses-feature
         android:name="android.hardware.microphone"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="false" />
+
+    <queries>
+        <package android:name="com.burton.issues" />
+        <package android:name="com.burton.issues.debug" />
+    </queries>
 
     <application
         android:name=".BurtonMeetingApplication"

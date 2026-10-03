@@ -1,6 +1,8 @@
 package com.burton.meeting.ui.settings
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,13 +17,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.burton.meeting.BuildConfig
+import com.burton.meeting.report.BurtonIssues
 import com.burton.meeting.ui.components.FullScreenModal
 import com.burton.meeting.ui.theme.BurtonCharcoal
 import com.burton.meeting.ui.theme.BurtonIvory
 import com.burton.meeting.ui.theme.BurtonMute
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SettingsModal(
     displayName: String,
@@ -57,10 +62,15 @@ fun SettingsModal(
             )
         }
         Spacer(Modifier.height(12.dp))
+        val context = LocalContext.current
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(BurtonCharcoal, RoundedCornerShape(18.dp))
+                .combinedClickable(
+                    onClick = {},
+                    onLongClick = { BurtonIssues.openNewIssue(context) },
+                )
                 .padding(horizontal = 16.dp, vertical = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
