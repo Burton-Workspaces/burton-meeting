@@ -2,7 +2,7 @@
 
 LAN video and voice meetings for the household. One phone hosts the room, others join from the same Wi-Fi. There is no cloud account and no extra server.
 
-Signed APKs are published on [GitHub Releases](https://github.com/Burton-Workspaces/burton-meeting/releases). Droidify / F-Droid: [burton-sonos-fdroid](https://github.com/Burton-Workspaces/burton-sonos-fdroid) (`https://burton-workspaces.github.io/burton-sonos-fdroid/fdroid/repo`).
+Signed APKs are published on [GitHub Releases](https://github.com/Burton-Workspaces/burton-meeting/releases). Droidify / F-Droid: [burton-app-dist](https://github.com/Burton-Workspaces/burton-app-dist) (`https://burton-workspaces.github.io/burton-app-dist/fdroid/repo`).
 
 ## What it does
 

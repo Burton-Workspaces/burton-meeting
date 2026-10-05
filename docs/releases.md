@@ -104,9 +104,9 @@ chmod 0600 config.yml
 
 Debian `fdroidserver` 2.2.1 cannot scan this app (`androguard` / `res1 must be zero!`). Details: [fdroid.md](fdroid.md).
 
-In `~/fdroid/config.yml` set `repo_url` to `https://burton-workspaces.github.io/burton-sonos-fdroid/fdroid/repo` and set `repo_name` (for example `Burton Workspaces`). Details: [fdroid.md](fdroid.md).
+In `~/fdroid/config.yml` set `repo_url` to `https://burton-workspaces.github.io/burton-app-dist/fdroid/repo` and set `repo_name` (for example `Burton Workspaces`). Details: [fdroid.md](fdroid.md).
 
-**4. Pages checkout** — clone [Burton-Workspaces/burton-sonos-fdroid](https://github.com/Burton-Workspaces/burton-sonos-fdroid) **next to** this app (`../burton-sonos-fdroid`). `./scripts/publish-fdroid-pages.sh` uses that path by default.
+**4. Pages checkout** — clone [Burton-Workspaces/burton-app-dist](https://github.com/Burton-Workspaces/burton-app-dist) **next to** this app (`../rabun-app-dist`). `./scripts/publish-fdroid-pages.sh` uses that path by default.
 
 **5. Env file** (so F-Droid publish is one command):
 
@@ -135,17 +135,17 @@ That runs `assembleRelease`, copies `burton-meeting-<version>.apk` into the repo
 ./scripts/publish-fdroid-pages.sh
 ```
 
-That reuses `burton-meeting-<version>.apk` if it is still in the app root, runs `fdroid update`, copies only `repo/` into `../burton-sonos-fdroid/fdroid/repo/`, writes `FINGERPRINT`, and pushes. The catalog still includes Burton Sonos and App Hub packages already in `$FDROID_ROOT/repo/`.
+That reuses `burton-meeting-<version>.apk` if it is still in the app root, runs `fdroid update`, copies only `repo/` into `../rabun-app-dist/fdroid/repo/`, writes `FINGERPRINT`, and pushes. The catalog still includes Burton Sonos and App Hub packages already in `$FDROID_ROOT/repo/`.
 
 **9. Confirm**
 
 - GitHub Release: `https://github.com/Burton-Workspaces/burton-meeting/releases/tag/v1.0.0`
-- F-Droid index: `https://burton-workspaces.github.io/burton-sonos-fdroid/fdroid/repo`
-- Fingerprint: `../burton-sonos-fdroid/FINGERPRINT` (also printed by the publish script)
+- F-Droid index: `https://burton-workspaces.github.io/burton-app-dist/fdroid/repo`
+- Fingerprint: `../rabun-app-dist/FINGERPRINT` (also printed by the publish script)
 
 Droidify → **Repositories** → **+**
 
-- Address: `https://burton-workspaces.github.io/burton-sonos-fdroid/fdroid/repo`
+- Address: `https://burton-workspaces.github.io/burton-app-dist/fdroid/repo`
 - Fingerprint: the 64-character hex from `FINGERPRINT`
 
 Replace `1.0.0` with whatever is in `version.txt` on later versions.
